@@ -15,11 +15,11 @@
 % \publicationrights{licensed}
 
 % title & authors %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\title{Life is Good: Graduation is Within Your Reach!}
+\title{Make Halting Problem an Unsolved Problem Again by Carefully Designing a Purely Functional Programming Language}
 
-\authorinfo{Happy Researcher \and Delighted Researcher \and Ecstatic Researcher}
-           {University of Washington}
-           {\{happy, delight, ecstatic\}@cs.washington.edu}
+\authorinfo{tsao chi}
+           {a certain High School :)}
+           {tsao-chi@the-lingo.org}
 
 \maketitle
 
@@ -27,23 +27,55 @@
 \input{abstract}
 
 {\footnotesize
-\category{D.3.3}{Programming Languages}{Language Constructs and Features}[Data
-    types and structures]
-\terms  % terms are optional
-Term One; Term Two; Term Three;
+\category{D.3.3}{Programming Languages}{Language Constructs and Features}
+%\terms  % terms are optional
+%Term One; Term Two; Term Three;
 \keywords
-Keyword One; Keyword Two; Keyword Three
+Halting Problem; Language Design;
 }
 
 % the actual paper! %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Introduction}
 
-Immix is excellent, but could be faster~\citep{immix}. Previous efforts have
-focused on making Immix faster by making it do less work. This paper proposes
-a novel strategy: make Immix faster by making it do \emph{more work}. 
-\todo{this seems like nonsense!}
-After all, more work means more results.
+The key is to cancel the uniqueness property of normal forms, then the proof of the undecidability of whether the process of interpreting an expression will halt, known as Turing's proof, is invalid.~\citep{halt}
+
+\subsection{The Design}
+
+It's a Scheme dialect. Mostly the same as Scheme, except for the following items.
+
+\begin{enumerate}
+\item purely functional and lazy
+\item the Exception Handling System
+\end{enumerate}
+
+\section{Background - How the idea was conceived}
+
+When I was in junior high school, I was playing with my Scheme-like purely functional language and
+came up with these 2 features.
+
+\subsection{My Exception Handling System - Exceptions are just ordinary values}
+
+Functions that do not expect an exception as input will generate a new exception which usually includes the original exception when the input is an exception.
+
+\subsection{the cancellation of the uniqueness property of normal forms}
+
+I observed that there are some expressions which have not naturally unique normal form, such as converting a finite set into a list.
+
+\section{the Rule}
+
+With these 2 features,
+it's reasonable to allow an interpreter to interpret a expression that will run forever as an exception.
+
+\section{Effects of the Rule}
+
+\subsection{Non-uniqueness caused by the Rule}
+
+Consider this example. Interpret {\scriptsize\verb|a|} or {\scriptsize\verb|b|} or the entire expression as an exception is all reasonable.
+\lstset{language=Lisp}
+\begin{lstlisting}[frame=single]
+(letrec ([a (car b)] [b (car a)]) a)
+\end{lstlisting}
 
 % bibliography %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \bibliographystyle{abbrvnat}
