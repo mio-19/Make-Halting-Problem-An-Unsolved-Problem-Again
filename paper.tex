@@ -62,7 +62,7 @@ It's a Scheme dialect. Mostly the same as Scheme, except for the following items
 \section{Background - How the idea was conceived}
 
 When I was in junior high school, I was playing with my Scheme-like purely functional language and
-came up with these 2 features.
+came up with these two features.
 
 \subsection{the Exception Handling System - Exceptions are just ordinary values}
 
@@ -74,7 +74,7 @@ I observed that there are some expressions which have not naturally unique norma
 
 \section{the Rule}
 
-With these 2 features,
+With these two features,
 it's reasonable to allow an interpreter to interpret an expression that will run forever as an exception.
 
 \section{Effects of the Rule}
@@ -89,7 +89,7 @@ Consider this example. Interpret {\scriptsize\verb|a|} or {\scriptsize\verb|b|} 
 
 \subsection{Range}
 
-Interpreting the entire program as an Exception conforms to the rule, but this bypasses the program's exception handling system. So an interpreter should try to avoid this situation.
+Interpreting the entire program as an Exception conforms to the Rule, but this bypasses the program's exception handling system. So an interpreter should try to avoid this situation.
 
 \section{How is this language Turing-complete?}
 
