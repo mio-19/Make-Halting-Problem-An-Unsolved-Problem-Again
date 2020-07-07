@@ -24,7 +24,17 @@
 \maketitle
 
 % abstract & classification %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\input{abstract}
+\begin{abstract}
+% PROBLEM: what problem are you addressing?
+% CONTRIBUTION: what have you done to solve this problem?
+% RESULT: what was the outcome of your contribution to the problem?
+% MEANING: what does this outcome mean?
+
+While the halting problem is proven to be undecidable in conventional purely functional programming languages,
+it's possible to design a Turing-complete purely functional programming language
+by breaking some fundamental properties of conventional purely functional programming languages
+such that the problem of implementing an interpreter which will finish running for any input program is unsolved.
+\end{abstract}
 
 {\footnotesize
 \category{D.3.3}{Programming Languages}{Language Constructs and Features}
@@ -38,7 +48,7 @@ Halting Problem; Language Design;
 
 \section{Introduction}
 
-The key is to cancel the uniqueness property of normal forms, then the proof of the undecidability of whether the process of interpreting an expression will halt, known as Turing's proof, is invalid.~\citep{halt}
+The key is to cancel the uniqueness property of normal forms, then the proof of the undecidability of whether the process of interpreting an expression will halt, known as Turing's proof~\citep{turing_paper}, is invalid.
 
 \subsection{The Design}
 
@@ -54,9 +64,9 @@ It's a Scheme dialect. Mostly the same as Scheme, except for the following items
 When I was in junior high school, I was playing with my Scheme-like purely functional language and
 came up with these 2 features.
 
-\subsection{My Exception Handling System - Exceptions are just ordinary values}
+\subsection{the Exception Handling System - Exceptions are just ordinary values}
 
-Functions that do not expect an exception as input will generate a new exception which usually includes the original exception when the input is an exception.
+Functions that do not expect an exception as input will generate a new exception which usually (it's not forced by language specialization, so ``usually'') includes the original exception when the input is an exception.
 
 \subsection{the cancellation of the uniqueness property of normal forms}
 
@@ -65,7 +75,7 @@ I observed that there are some expressions which have not naturally unique norma
 \section{the Rule}
 
 With these 2 features,
-it's reasonable to allow an interpreter to interpret a expression that will run forever as an exception.
+it's reasonable to allow an interpreter to interpret an expression that will run forever as an exception.
 
 \section{Effects of the Rule}
 
@@ -76,6 +86,23 @@ Consider this example. Interpret {\scriptsize\verb|a|} or {\scriptsize\verb|b|} 
 \begin{lstlisting}[frame=single]
 (letrec ([a (car b)] [b (car a)]) a)
 \end{lstlisting}
+
+\subsection{Range}
+
+Interpreting the entire program as an Exception conforms to the rule, but this bypasses the program's exception handling system. So an interpreter should try to avoid this situation.
+
+\section{How is this language Turing-complete?}
+
+A computational system that can compute every Turing-computable function is called Turing-complete (or Turing-powerful).~\citep{wikipedia_Turing_completeness}
+
+The Rule does nothing to Turing-computable function, so it's Turing-complete.
+
+\section{Further work}
+
+\begin{enumerate}
+\item Resolve the problem.
+\item Formalize this language.
+\end{enumerate}
 
 % bibliography %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \bibliographystyle{abbrvnat}
