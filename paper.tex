@@ -88,9 +88,9 @@ Consider this example. Interpret {\scriptsize\verb|a|} or {\scriptsize\verb|b|} 
 (letrec ([a (car b)] [b (car a)]) a)
 \end{lstlisting}
 
-\subsection{Range}
+\subsection{Rewrite Range}
 
-Interpreting the entire program as an Exception conforms to the bottom-rewriting rule, but this bypasses the program's exception handling system. So an interpreter should try to avoid this situation.
+Interpreting the entire program as an Exception conforms to the bottom-rewriting rule, but it will bypass the program's exception handling system. So an interpreter should try to avoid this situation.
 
 \section{How is this language Turing-complete?}
 
