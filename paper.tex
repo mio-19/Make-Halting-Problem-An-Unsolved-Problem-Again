@@ -32,8 +32,8 @@
 
 While the halting problem is proven to be undecidable in conventional purely functional programming languages,
 it's possible to design a Turing-complete purely functional programming language
-by breaking some fundamental properties of conventional purely functional programming languages
-such that the problem of implementing an interpreter which will finish running for any input program is unsolved.
+such that the problem of implementing an interpreter which will finish running for any input program is unsolved
+by breaking some fundamental properties of conventional purely functional programming languages.
 \end{abstract}
 
 {\footnotesize
@@ -72,14 +72,15 @@ Functions that do not expect an exception as input will generate a new exception
 
 I observed that there are some expressions which have not naturally unique normal form, such as converting a finite set into a list.
 
-\section{the Rule}
+\section{the bottom-rewriting rule}
 
 With these two features,
 it's reasonable to allow an interpreter to interpret an expression that will run forever as an exception.
+I call it the bottom-rewriting rule.
 
-\section{Effects of the Rule}
+\section{Effects of the bottom-rewriting rule}
 
-\subsection{Non-uniqueness caused by the Rule}
+\subsection{Non-uniqueness caused by the bottom-rewriting rule}
 
 Consider this example. Interpret {\scriptsize\verb|a|} or {\scriptsize\verb|b|} or the entire expression as an exception is all reasonable.
 \lstset{language=Lisp}
@@ -89,13 +90,13 @@ Consider this example. Interpret {\scriptsize\verb|a|} or {\scriptsize\verb|b|} 
 
 \subsection{Range}
 
-Interpreting the entire program as an Exception conforms to the Rule, but this bypasses the program's exception handling system. So an interpreter should try to avoid this situation.
+Interpreting the entire program as an Exception conforms to the bottom-rewriting rule, but this bypasses the program's exception handling system. So an interpreter should try to avoid this situation.
 
 \section{How is this language Turing-complete?}
 
 A computational system that can compute every Turing-computable function is called Turing-complete (or Turing-powerful).~\citep{wikipedia_Turing_completeness}
 
-The Rule does nothing to Turing-computable function, so it's Turing-complete.
+The bottom-rewriting rule does nothing to Turing-computable function, so this language is Turing-complete.
 
 \section{Further work}
 
